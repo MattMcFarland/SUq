@@ -226,6 +226,8 @@ SUq was made possible by:
 
 * [microdata-node by Jan Potoms](https://github.com/Janpot/microdata-node)
 
+* [microformat-node by Glenn Jones](https://github.com/glennjones/microformat-node#readme)
+
 * [minimist by James Halliday](https://github.com/substack/minimist)
 
 * [request by Mikeal Rogers](https://github.com/request/request#readme)
