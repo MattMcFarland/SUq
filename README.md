@@ -219,7 +219,7 @@ suq(url, function (err, json, body) {
 
 SUq was made possible by:
 
-* [cheerio by Matt Mueller](git://github.com/cheeriojs/cheerio.git)
+* [cheerio by Matt Mueller](https://github.com/cheeriojs/cheerio.git)
 
 * [lodash by John-David Dalton](https://lodash.com/)
 
