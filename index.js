@@ -7,7 +7,9 @@ var
     request = require('request'),
     microdata = require('microdata-node'),
     microformat = require('microformat-node'),
-    ogs = require('./lib/ogs');
+    ogs = require('./lib/ogs'),
+    _ = require('lodash'),
+    J = require('JSONSelect');
 
 var populate = {
     meta: {},
@@ -23,6 +25,8 @@ var populate = {
     images: [],
     og: {}
 };
+
+var simpleSet = {};
 
 
 var loadDocument = function (url, callback) {
@@ -44,7 +48,12 @@ var loadDocument = function (url, callback) {
 };
 
 
-module.exports = function(url, callback) {
+
+var parse = function(url, callback, opts) {
+
+
+
+
 
     loadDocument(url, function(err, body, $) {
 
@@ -55,65 +64,130 @@ module.exports = function(url, callback) {
             var $head = $('head'),
                 $body = $('body');
 
-            populate.meta.title = $head.find('title').text();
-            populate.meta.description = $head.find('description').text();
-            populate.meta.keywords = $head.find('keywords').text().split(',');
+            if (opts.meta) {
+                populate.meta.title = $head.find('title').text();
+                populate.meta.description = $head.find('description').text();
+                populate.meta.keywords = $head.find('keywords').text().split(',');
+            }
 
-            populate.headers.h1.push($body.find('h1').text());
-            populate.headers.h2.push($body.find('h2').text());
-            populate.headers.h3.push($body.find('h3').text());
-            populate.headers.h4.push($body.find('h4').text());
-            populate.headers.h5.push($body.find('h5').text());
-
-            $body.find('h1').each(function(i, el) {
-
-                populate.headers.h1.push($(el).text().trim());
-
-            });
-
-            $body.find('h2').each(function(i, el) {
-
-                populate.headers.h2.push($(el).text().trim());
-
-            });
-
-            $body.find('h3').each(function(i, el) {
-
-                populate.headers.h3.push($(el).text().trim());
-
-            });
-
-            $body.find('h4').each(function(i, el) {
-
-                populate.headers.h4.push($(el).text().trim());
-
-            });
-
-            $body.find('h5').each(function(i, el) {
-
-                populate.headers.h5.push($(el).text().trim());
-
-            });
-            $body.find('img').each(function(i, el) {
-
-                populate.images.push($(el).attr('src'));
-
-            });
-
-            populate.microdata = microdata.toJson(body);
-
-            microformat.parseHtml(body, {}, function (err, data) {
-
-                populate.microformat = data;
+            if (opts.headers) {
 
 
-                ogs.getOG(body, function(err, data) {
+                $body.find('h1').each(function(i, el) {
 
-                    populate.og = JSON.parse(JSON.stringify(data));
-                    callback(null, JSON.parse(JSON.stringify(populate, null, 2)), body);
+                    populate.headers.h1.push($(el).text().trim());
 
                 });
-            });
+
+                $body.find('h2').each(function(i, el) {
+
+                    populate.headers.h2.push($(el).text().trim());
+
+                });
+
+                $body.find('h3').each(function(i, el) {
+
+                    populate.headers.h3.push($(el).text().trim());
+
+                });
+
+                $body.find('h4').each(function(i, el) {
+
+                    populate.headers.h4.push($(el).text().trim());
+
+                });
+
+                $body.find('h5').each(function(i, el) {
+
+                    populate.headers.h5.push($(el).text().trim());
+
+                });
+            }
+
+            if (opts.images) {
+                $body.find('img').each(function(i, el) {
+
+                    populate.images.push($(el).attr('src'));
+
+                });
+            }
+
+
+            if (opts.microdata) {
+                populate.microdata = microdata.toJson(body);
+            }
+
+
+            if (opts.microformats) {
+                microformat.parseHtml(body, {}, function (err, data) {
+                    if (err) {
+                        callback(err);
+                    } else {
+
+                        populate.microformat = data;
+
+                        if (opts.og) {
+                            ogs.getOG(body, function(err, data) {
+                                if (err) {
+                                    callback(err);
+                                } else {
+                                    populate.og = JSON.parse(JSON.stringify(data));
+                                    callback(null, JSON.parse(JSON.stringify(populate, null, 2)), body);
+                                }
+                            });
+                        } else {
+                            callback(null, JSON.parse(JSON.stringify(populate, null, 2)), body);
+                        }
+                    }
+                });
+            } else if (opts.og) {
+                ogs.getOG(body, function(err, data) {
+                    if (err) {
+                        callback (err);
+                    } else {
+                        populate.og = JSON.parse(JSON.stringify(data));
+                        callback(null, JSON.parse(JSON.stringify(populate, null, 2)), body);
+                    }
+                });
+            }
         }
     });
+};
+
+
+
+module.exports = function (url, callback, options) {
+
+
+    var defaults = {
+
+        meta: true,
+        microdata: true,
+        microformats: true,
+        headers: true,
+        images: true,
+        og: true,
+        simplifyJSON: true
+
+    };
+
+    var opts = _.extend(defaults, options);
+
+    parse(url, function (err, data, body) {
+
+
+        if (opts.simplifyJSON) {
+            /**
+             * h-adr, h-card, h-entry, h-event, h-geo, h-news, h-product, h-recipe, h-resume, h-review-aggregate,
+             * h-review, adr, hCard, hEntry, hEvent, geo, hNews hProduct, hRecipe, hResume, hReview-aggregate,
+             * hReview, rel=tag, rel=licence, rel=no-follow, rel=author and XFN
+             */
+
+        }
+
+
+        callback(err, data, body);
+    }, opts);
+
+
 };
