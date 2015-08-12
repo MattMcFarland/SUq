@@ -2,7 +2,7 @@
 
 Scraping Utility for lazy people.
 
-Here's a simple node module that will allow you to asynchronously scrape opengraph tags, microformats, microdata, header tags, images, classic meta, and whatever else you want.  
+Here's a simple node module that will allow you to asynchronously scrape opengraph tags, microformats, microdata, header tags, images, classic meta, and whatever else you want with minimal effort.
 You can output the scraped data in the command line, or you can output scraped data as a JSON object.
 If you don't want the scraped data yet, and still want to fine tune and grab more data from the html, no problem.  You can extend suq as much as you want, it doesn't care.
 
@@ -15,7 +15,7 @@ If you don't want the scraped data yet, and still want to fine tune and grab mor
 * [images](#images)
 * [meta](#meta)
 * [extending](#extending)
-* [Mentions](#mentions);
+* [Mentions](#mentions)
 
 ### Command line usage:
 
