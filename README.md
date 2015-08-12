@@ -15,7 +15,7 @@ If you don't want the scraped data yet, and still want to fine tune and grab mor
 * [images](#images)
 * [meta](#meta)
 * [extending](#extending)
-* [recipes]('./recipes')
+* [recipes](./recipes)
 * [Mentions](#mentions)
 
 ### Command line usage:
