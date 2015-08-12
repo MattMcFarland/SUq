@@ -22,7 +22,7 @@ if (argv.version || argv.v) {
 
 if (url) {
 
-    if (!url.indexOf('http') > -1) {
+    if (url.indexOf('http') === -1) {
         console.error('SUq Error ['+ url + ']\n', 'Be sure to use http:// or https://');
     } else {
         suq(url, function (err, data) {
