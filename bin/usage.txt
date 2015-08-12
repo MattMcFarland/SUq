@@ -1,0 +1,15 @@
+Usage: suq [url] {OPTIONS}
+
+Options:
+
+        --url, -u  Scrapes the url provided.
+                   Optionally url can be the first parameter.
+
+     --output, -o  Writes the scraped data to a file
+                   If unspecified, suq prints to stdout.
+
+    --version, -v  Displays version information.
+
+       --help, -h  Show this message
+
+Specify a parameter.
