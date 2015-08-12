@@ -1,7 +1,7 @@
 {
   "name": "suq",
   "main": "./index",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A Scraping Utility for lazy people",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,7 +25,8 @@
   "files": [
     "index.js",
     "lib",
-    "bin"
+    "bin",
+    "recipes"
   ],
   "author": {
     "name": "Matt McFarland",
