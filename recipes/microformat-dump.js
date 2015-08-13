@@ -1,4 +1,4 @@
-var suq = require('../');
+var suq = require('suq');
 var cheerio = require('cheerio');
 var _ = require('lodash');
 
