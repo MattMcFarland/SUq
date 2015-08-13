@@ -148,6 +148,7 @@ How to scrape image tag URLS from a website:
 
 ```javascript
 var suq = require('suq');
+var _ = require('underscore');
 var url = "http://www.example.com";
 
 suq(url, function (err, json, body) {
