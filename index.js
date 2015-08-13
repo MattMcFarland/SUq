@@ -8,8 +8,7 @@ var
     microdata = require('microdata-node'),
     microformat = require('microformat-node'),
     ogs = require('./lib/ogs'),
-    _ = require('lodash'),
-    J = require('JSONSelect');
+    _ = require('lodash');
 
 var populate = {
     meta: {},
@@ -26,7 +25,7 @@ var populate = {
     og: {}
 };
 
-var simpleSet = {};
+
 
 
 var loadDocument = function (url, callback) {
@@ -174,17 +173,6 @@ module.exports = function (url, callback, options) {
     var opts = _.extend(defaults, options);
 
     parse(url, function (err, data, body) {
-
-
-        if (opts.simplifyJSON) {
-            /**
-             * h-adr, h-card, h-entry, h-event, h-geo, h-news, h-product, h-recipe, h-resume, h-review-aggregate,
-             * h-review, adr, hCard, hEntry, hEvent, geo, hNews hProduct, hRecipe, hResume, hReview-aggregate,
-             * hReview, rel=tag, rel=licence, rel=no-follow, rel=author and XFN
-             */
-
-        }
-
 
         callback(err, data, body);
     }, opts);
