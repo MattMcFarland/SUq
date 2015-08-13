@@ -72,7 +72,7 @@ suq(url, function (err, json, body) {
 
     if (!err) {
         var openGraphTags = json.og;
-        DoSomethingCool(openGraphTags);            
+        console.log(JSON.stringify(openGraphTags, null, 2));            
     }
 
 });
