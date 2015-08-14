@@ -1,4 +1,4 @@
-[![npm version](https://badge.fury.io/js/suq.svg)](http://badge.fury.io/js/suq)
+[![NPM](https://nodei.co/npm/suq.png)](https://npmjs.org/package/suq)
 
 ## SUq
 
