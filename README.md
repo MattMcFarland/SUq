@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/suq.svg)](http://badge.fury.io/js/suq)
+
 ## SUq
 
 Scraping Utility for lazy people.
