@@ -9,23 +9,25 @@ Here's a simple node module that will allow you to asynchronously scrape opengra
 You can output the scraped data in the command line, or you can output scraped data as a JSON object.
 If you don't want the scraped data yet, and still want to fine tune and grab more data from the html, no problem.  You can extend suq as much as you want, it doesn't care.
 
+* [Recipes](./recipes)
 * [Command line Usage](#command-line-usage)
 * [Basic Usage](#basic-usage)
 * [Opengraph](#opengraph)
 * [Microformat](#microformat)
 * [Microdata](#microdata)
-* [headers](#headers)
-* [images](#images)
-* [meta](#meta)
-* [extending](#extending)
-* [recipes](./recipes)
+* [Headers](#headers)
+* [Images](#images)
+* [Meta](#meta)
+* [Options](#options)
+* [Signature](#signature)
+* [Extending](#extending)
 * [Mentions](#mentions)
 
 ### Command line usage:
 
 Scrape a website and output the data to command line.
 
-suq can be used in the command line when installed globally.
+suq can be used in the command line when installed globally, outputting scraped data to `stdout`
 
 ```
 npm install suq -g
@@ -95,7 +97,7 @@ suq(url, function (err, json, body) {
 
     if (!err) {
         var microformat = json.microformat;
-        DoSomethingCool(microformat);
+        console.log(JSON.stringify(microformat, null, 2));
     }
 
 });
@@ -187,6 +189,65 @@ suq(url, function (err, json, body) {
 
 });
 ```
+
+
+
+### Options
+
+You can customize what SUq pulls from websites by using `options` (everything is turned on by default)
+
+Here is how you can scrape nothing but open graph tags:
+```javascript
+var suq = require('suq');
+var url = "http://www.example.com";
+var options = {
+    meta: false,
+    microdata: false,
+    microformats: false,
+    headers: false,
+    images: false,
+    og: true // or leave this blank since it is true by default
+}
+
+suq(url, function (err, json, body) {
+
+    if (!err) {
+        var openGraphTags = json.og;
+        console.log(JSON.stringify(openGraphTags, null, 2));
+    }
+
+}, options);
+```
+
+### Output
+
+TBD
+
+
+#### Options Table
+<table>
+<tbody>
+<tr><td>meta</td><td>scrape meta tags</td></tr>
+<tr><td>microdata</td><td>scrape microdata</td></tr>
+<tr><td>microformats</td><td>scrape microformats</td></tr>
+<tr><td>headers</td><td>scrape headers</td></tr>
+<tr><td>images</td><td>scrape images</td></tr>
+<tr><td>og</td><td>scrape open graph</td></tr>
+</tbody>
+</table>
+
+> Remember, Everything is enabled by default.
+
+
+
+### Signature
+
+If you are familiar with signature patterns, you may find this helpful.  If not, you may ignore this :)
+
+```javascript
+suq(String url, Callback( JSON err, JSON json, String body ) callback, Object options);
+```
+
 
 ### Extending
 
