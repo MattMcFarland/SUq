@@ -303,3 +303,8 @@ SUq was made possible by:
 
 
 A huge THANK YOU goes out to all of you for making this easy for me..  :)
+
+
+### TODOS:
+
+- Add more explanations regarding options
