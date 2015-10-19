@@ -1,4 +1,5 @@
 node_modules
 .idea
 .c9
+npm-debug.log.c9
 task.txt

@@ -1,8 +1,8 @@
-var suq = require('../');
+var suq = require('suq');
 var cheerio = require('cheerio');
 var _ = require('lodash');
 
-suq('https://www.owasp.org/index.php/XSS_Filter_Evasion_Cheat_Sheet#XSS_Locator', function (err, data, body) {
+suq('http://odonatagame.blogspot.com/2015/07/oh-thats-right-were-not-dead.html', function (err, data, body) {
 
     var $ = cheerio.load(body);
 
