@@ -191,61 +191,12 @@ suq(url, function (err, json, body) {
 ```
 
 
-
-### Options
-
-You can customize what SUq pulls from websites by using `options` (everything is turned on by default)
-
-Here is how you can scrape nothing but open graph tags:
-```javascript
-var suq = require('suq');
-var url = "http://www.example.com";
-var options = {
-    meta: false,
-    microdata: false,
-    microformats: false,
-    headers: false,
-    images: false,
-    og: true // or leave this blank since it is true by default
-}
-
-suq(url, function (err, json, body) {
-
-    if (!err) {
-        var openGraphTags = json.og;
-        console.log(JSON.stringify(openGraphTags, null, 2));
-    }
-
-}, options);
-```
-
-### Output
-
-TBD
-
-
-#### Options Table
-<table>
-<tbody>
-<tr><td>meta</td><td>scrape meta tags</td></tr>
-<tr><td>microdata</td><td>scrape microdata</td></tr>
-<tr><td>microformats</td><td>scrape microformats</td></tr>
-<tr><td>headers</td><td>scrape headers</td></tr>
-<tr><td>images</td><td>scrape images</td></tr>
-<tr><td>og</td><td>scrape open graph</td></tr>
-</tbody>
-</table>
-
-> Remember, Everything is enabled by default.
-
-
-
 ### Signature
 
 If you are familiar with signature patterns, you may find this helpful.  If not, you may ignore this :)
 
 ```javascript
-suq(String url, Callback( JSON err, JSON json, String body ) callback, Object options);
+suq(String url, Callback( JSON err, JSON json, String body ) callback);
 ```
 
 
@@ -308,3 +259,13 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 ### TODOS:
 
 - Add more explanations regarding options
+
+
+### Changelog
+
+#### v1.0.0
+
+- Cleaned up Microdata to much more managable state.
+- Cleaned up Microformats to much more managable state.
+- Remove options support.
+

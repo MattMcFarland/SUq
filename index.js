@@ -4,26 +4,26 @@
 
 var
   chalk = require('chalk'),
-  cleanMicrodata = require('./lib/cleanMicrodata'),
   cheerio = require('cheerio'),
   request = require('request'),
   microdata = require('microdata-node'),
   microformat = require('microformat-node'),
-  ogs = require('./lib/ogs'),
   _ = require('lodash');
+
+
+var
+  cleanMicrodata = require('./lib/cleanMicrodata'),
+  cleanMicroformats = require('./lib/cleanMicroformats'),
+  parseMeta = require('./lib/parseMeta'),
+  parseTags = require('./lib/parseTags'),
+  ogs = require('./lib/ogs');
+
 
 var populate = {
   meta: {},
   microdata: {},
   microformat: {},
-  headers: {
-    h1:[],
-    h2:[],
-    h3:[],
-    h4:[],
-    h5:[]
-  },
-  images: [],
+  tags: {},
   og: {}
 };
 
@@ -149,11 +149,18 @@ var parse = function(url, callback, opts) {
   **/
 
   //Microdata only
-  loadDocument(url, function (err, body) {
+  loadDocument(url, function (err, body, $,  res) {
     if (!err && body) {
       cleanMicrodata(microdata.toJson(body), function (err, cleanData) {
         if (!err && cleanData) {
-          callback(null, cleanData);
+          populate.microdata = cleanData;
+          parseMeta($, function (err, meta) {
+            populate.meta = meta;
+            parseTags($, function(err, tags) {
+              populate.tags = tags;
+              callback(null, populate);
+            })
+          });
         } else {
           callback(err || 'CleanData fail');
         }
@@ -161,34 +168,17 @@ var parse = function(url, callback, opts) {
     } else {
       callback(err || 'No response');
     }
-
   })
-
 };
 
 
 
-module.exports = function (url, callback, options) {
+module.exports = function (url, callback) {
 
-
-  var defaults = {
-
-    meta: true,
-    microdata: true,
-    microformats: true,
-    headers: true,
-    images: true,
-    og: true,
-    simplifyJSON: true
-
-  };
-
-  var opts = _.extend(defaults, options);
 
   parse(url, function (err, data, body) {
-
     callback(err, data, body);
-  }, opts);
+  });
 
 
 };
