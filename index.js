@@ -158,7 +158,10 @@ var parse = function(url, callback, opts) {
             populate.meta = meta;
             parseTags($, function(err, tags) {
               populate.tags = tags;
-              callback(null, populate);
+              cleanMicroformats(body, function(err, mfats) {
+                populate.microformat = mfats;
+                callback(null, populate);
+              })
             })
           });
         } else {
