@@ -32,7 +32,7 @@ if (url) {
                     console.error('SUq Error ['+ url + ']\n', 'response empty');
                 } else {
                     if (!output) {
-                        console.log(JSON.stringify(data));
+                        console.log(JSON.stringify(data, null, 2));
                     } else {
                         fs.writeFile(path.join(__dirname, output), JSON.stringify(data), function(err){
                             console.log('File ' + output + ' successfully written!');
