@@ -1,0 +1,6 @@
+node_modules
+.idea
+.c9
+npm-debug.log
+task.txt
+tests/sites/*.json
