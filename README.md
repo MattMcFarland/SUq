@@ -18,7 +18,6 @@ If you don't want the scraped data yet, and still want to fine tune and grab mor
 * [Headers](#headers)
 * [Images](#images)
 * [Meta](#meta)
-* [Options](#options)
 * [Signature](#signature)
 * [Extending](#extending)
 * [Mentions](#mentions)
@@ -244,11 +243,9 @@ SUq was made possible by:
 
 * [microformat-node by Glenn Jones](https://github.com/glennjones/microformat-node#readme)
 
-* [minimist by James Halliday](https://github.com/substack/minimist)
+* [minimist and traverse by James Halliday](https://github.com/substack/minimist)
 
 * [request by Mikeal Rogers](https://github.com/request/request#readme)
-
-* [openGraphScraper by Josh Shemas](http://github.com/jshemas/openGraphScraper)
 
 * And of course the awesome folks over at nodeJS.org
 
@@ -266,6 +263,20 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 #### v1.0.0
 
 - Cleaned up Microdata to much more managable state.
+
 - Cleaned up Microformats to much more managable state.
+
+- Cleaned up meta tag scraping
+
+- Reworked Opengraph tag scraping
+
+- Removed options support due to async bugs (may add back in later)
+
+- Added some (not all) XSS protection
+
+- Added trimming/whitespace removal
+
 - Remove options support.
+
+- Fails are graceful, resulting in at least some data returning if an error occurs
 
