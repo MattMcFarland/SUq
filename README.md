@@ -253,12 +253,23 @@ SUq was made possible by:
 A huge THANK YOU goes out to all of you for making this easy for me..  :)
 
 
+### Contributors
+
+- Matt McFarland
+- Tom Sutton
+
+
 ### TODOS:
 
 - Add more explanations regarding options
 
 
 ### Changelog
+
+
+#### v1.0.1
+
+- Fixed issue with missing body (only populate data was coming in) thanks Tom Sutton
 
 #### v1.0.0
 

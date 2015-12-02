@@ -1,7 +1,7 @@
 {
   "name": "suq",
   "main": "./index",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Scraping Utility for lazy people",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,6 +31,16 @@
     "name": "Matt McFarland",
     "email": "contact@mattmcfarland.com"
   },
+  "contributors": [
+    {
+      "name": "Matt McFarland",
+      "email": "contact@mattmcfarland.com"
+    },
+    {
+      "name": "Tom Sutton",
+      "url": "https://github.com/tomsutton1984"
+    }
+  ],
   "license": "MIT",
   "dependencies": {
     "cheerio": "^0.19.0",
