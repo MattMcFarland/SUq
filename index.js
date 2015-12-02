@@ -59,7 +59,7 @@ var parse = function(url, callback, opts) {
                 populate.microformat = mfats;
                 parseOpenGraph($, function(err, og) {
                   populate.opengraph = og;
-                  callback(null, populate);
+                  callback(null, populate, body);
                 });
               })
             })
