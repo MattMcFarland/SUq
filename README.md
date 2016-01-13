@@ -257,7 +257,7 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 
 - Matt McFarland
 - Tom Sutton
-
+- Oscar Illescas
 
 ### TODOS:
 
@@ -265,6 +265,9 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 
 
 ### Changelog
+
+#### v1.1.0
+- Add anchor tag links thanks to Oscar Illescas
 
 
 #### v1.0.1
