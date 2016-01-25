@@ -46,7 +46,9 @@ var loadDocument = function (url, callback) {
 
 var parse = function(url, callback, opts) {
 
-  loadDocument(url, function (err, body, $,  res) {
+  var req_opts = _.extend({"url": url}, opts)
+
+  loadDocument(req_opts, function (err, body, $,  res) {
     if (!err && body) {
       cleanMicrodata(microdata.toJson(body), function (err, cleanData) {
         if (!err && cleanData) {
@@ -76,12 +78,13 @@ var parse = function(url, callback, opts) {
 
 
 
-module.exports = function (url, callback) {
+module.exports = function (url, callback, opts) {
 
+  opts = opts || {};
 
   parse(url, function (err, data, body) {
     callback(err, data, body);
-  });
+  }, opts);
 
 
 };
