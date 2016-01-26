@@ -230,6 +230,18 @@ suq(url, function (err, json, body) {
     NowDoSomethingCool(json);
 });
 ```
+### Request options
+
+SUq uses the [request](https://github.com/request/request) library to retrieve the HTML of the given site. The default options may not always be ideal, so you can pass any [options](https://github.com/request/request#requestoptions-callback) to `request()` using an optional third argument to `suq()`. A prominent example is the NYTimes, where you must accept cookies to get to get past the paywall the content.
+
+```javascript
+var suq = require('suq');
+var url = "http://www.example.com";
+
+suq(url, function (err, json, body) {
+    NowDoSomethingCool(json);
+}, { jar: true });
+```
 
 ### Mentions
 
@@ -258,6 +270,7 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 - Matt McFarland
 - Tom Sutton
 - Oscar Illescas
+- Gary Moon
 
 ### TODOS:
 
