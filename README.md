@@ -232,7 +232,7 @@ suq(url, function (err, json, body) {
 ```
 ### Request options
 
-SUq uses the [request](https://github.com/request/request) library to retrive the HTML of the given site. The default options may not always be ideal, so you can pass any [options](https://github.com/request/request#requestoptions-callback) to `request()` using an optional third argument to `suq()`. A prominent example is the NYTimes, where you must accept cookies to get to get past the paywall the content.
+SUq uses the [request](https://github.com/request/request) library to retrieve the HTML of the given site. The default options may not always be ideal, so you can pass any [options](https://github.com/request/request#requestoptions-callback) to `request()` using an optional third argument to `suq()`. A prominent example is the NYTimes, where you must accept cookies to get to get past the paywall the content.
 
 ```javascript
 var suq = require('suq');
