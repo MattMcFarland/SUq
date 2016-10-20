@@ -26,65 +26,39 @@ var populate = {
 };
 
 
-var loadDocument = function (url, callback) {
-
-  request(url, function (err, res, body) {
-
+module.exports = function (url, callback, opts) {
+  request(_.extend({"url": url}, opts || {}), function (err, res, body) {
     if (err) {
       callback(err, null);
     } else if (body && res) {
-      callback(null, body, cheerio.load(body), res);
+      module.exports.parse(body, callback);
     } else {
       callback('No Response');
     }
-
   });
-
 };
 
 
-
-var parse = function(url, callback, opts) {
-
-  var req_opts = _.extend({"url": url}, opts)
-
-  loadDocument(req_opts, function (err, body, $,  res) {
-    if (!err && body) {
-      cleanMicrodata(microdata.toJson(body), function (err, cleanData) {
-        if (!err && cleanData) {
-          populate.microdata = cleanData;
-          parseMeta($, function (err, meta) {
-            populate.meta = meta;
-            parseTags($, function(err, tags) {
-              populate.tags = tags;
-              cleanMicroformats(body, function(err, mfats) {
-                populate.microformat = mfats;
-                parseOpenGraph($, function(err, og) {
-                  populate.opengraph = og;
-                  callback(null, populate, body);
-                });
-              })
-            })
-          });
-        } else {
-          callback(err || 'CleanData fail');
-        }
+module.exports.parse = function (body, callback) {
+  cleanMicrodata(microdata.toJson(body), function (err, cleanData) {
+    if (!err && cleanData) {
+      populate.microdata = cleanData;
+      var $ = cheerio.load(body);
+      parseMeta($, function (err, meta) {
+        populate.meta = meta;
+        parseTags($, function(err, tags) {
+          populate.tags = tags;
+          cleanMicroformats(body, function(err, mfats) {
+            populate.microformat = mfats;
+            parseOpenGraph($, function(err, og) {
+              populate.opengraph = og;
+              callback(null, populate, body);
+            });
+          })
+        })
       });
     } else {
-      callback(err || 'No response');
+      callback(err || 'CleanData fail');
     }
-  })
-};
-
-
-
-module.exports = function (url, callback, opts) {
-
-  opts = opts || {};
-
-  parse(url, function (err, data, body) {
-    callback(err, data, body);
-  }, opts);
-
-
+  });
 };

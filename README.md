@@ -243,6 +243,24 @@ suq(url, function (err, json, body) {
 }, { jar: true });
 ```
 
+### Handling requests yourself
+
+If you pass URLs that don't send HTML back, one of the dependencies for SUq will return an error. SUq therefore exposes
+it's `parse` function so you can handle these events yourself (in the cases when you don't want to validate the URL
+being passed to SUq) like so:
+
+```javascript
+var request = require('request');
+var suq = require('suq');
+
+request("http://www.example.com/image.jpeg", function (err, res, body) {
+  if (err) return callback(err);
+  else if (!res || !res.statusCode) return callback(new Error('No response'));
+  else if (res.headers['content-type'] !== 'text/html') return callback(null, {}, body);
+  else suq.parse(body, callback);
+});
+```
+
 ### Mentions
 
 SUq was made possible by:
@@ -306,4 +324,3 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 - Remove options support.
 
 - Fails are graceful, resulting in at least some data returning if an error occurs
-
