@@ -4,7 +4,7 @@
   "version": "1.3.0",
   "description": "A Scraping Utility for lazy people",
   "scripts": {
-    "test": "tape tests/**/*.js | tap-diff"
+    "test": "tape tests/*.js | tap-diff"
   },
   "keywords": [
     "htmlparser",
