@@ -297,6 +297,12 @@ A huge THANK YOU goes out to all of you for making this easy for me..  :)
 
 ### Changelog
 
+#### v1.3.0
+- Backfill unit tests, remove microformat truncation.
+
+#### v1.2.0
+- Add new request and documentation for using it.
+
 #### v1.1.0
 - Add anchor tag links thanks to Oscar Illescas
 
