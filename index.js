@@ -14,6 +14,7 @@ var
   cleanMicroformats = require('./lib/cleanMicroformats'),
   parseMeta = require('./lib/parseMeta'),
   parseTags = require('./lib/parseTags'),
+  parseTwitterCard = require('./lib/parseTwitterCard'),
   parseOpenGraph = require('./lib/parseOpenGraph');
 
 
@@ -22,7 +23,8 @@ var populate = {
   microdata: {},
   microformat: {},
   tags: {},
-  opengraph: {}
+  opengraph: {},
+  twittercard: {}
 };
 
 
@@ -52,7 +54,10 @@ module.exports.parse = function (body, callback) {
             populate.microformat = mfats;
             parseOpenGraph($, function(err, og) {
               populate.opengraph = og;
-              callback(null, populate, body);
+              parseTwitterCard($, function(err, twittercard) {
+                populate.twittercard = twittercard;
+                callback(null, populate, body);
+              });
             });
           })
         })

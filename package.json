@@ -16,6 +16,7 @@
     "microdata",
     "microformats",
     "opengraph",
+    "twittercard",
     "meta"
   ],
   "bin": {
