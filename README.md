@@ -13,6 +13,7 @@ If you don't want the scraped data yet, and still want to fine tune and grab mor
 * [Command line Usage](#command-line-usage)
 * [Basic Usage](#basic-usage)
 * [Opengraph](#opengraph)
+* [TwitterCard](#twittercard)
 * [Microformat](#microformat)
 * [Microdata](#microdata)
 * [Headers](#headers)
@@ -77,6 +78,26 @@ suq(url, function (err, json, body) {
     if (!err) {
         var openGraphTags = json.og;
         console.log(JSON.stringify(openGraphTags, null, 2));
+    }
+
+});
+
+```
+
+### TwitterCard
+
+How to scrape a website and store its twitter card tags.
+
+
+```javascript
+var suq = require('suq');
+var url = "http://www.example.com";
+
+suq(url, function (err, json, body) {
+
+    if (!err) {
+        var openTwitterCardTags = json.twittercard;
+        console.log(JSON.stringify(openTwitterCardTags, null, 2));
     }
 
 });
