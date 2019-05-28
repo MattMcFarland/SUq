@@ -8,7 +8,7 @@ const expected = {
     'twitter:creator': '@nickbilton',
 }
 
-test('parseTags.js', function (t) {
+test('parseTwitterCard.js', function (t) {
     t.plan(2);
     parseTwitterCard(parsedHtml, (err, data) => {
          t.equal(err, null, 'should return callback without error');

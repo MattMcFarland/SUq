@@ -15,8 +15,8 @@ var
   parseMeta = require('./lib/parseMeta'),
   parseTags = require('./lib/parseTags'),
   parseTwitterCard = require('./lib/parseTwitterCard'),
-  parseOpenGraph = require('./lib/parseOpenGraph');
-
+  parseOpenGraph = require('./lib/parseOpenGraph'),
+  parseOembed = require('./lib/parseOembed');
 
 var populate = {
   meta: {},
@@ -24,7 +24,8 @@ var populate = {
   microformat: {},
   tags: {},
   opengraph: {},
-  twittercard: {}
+  twittercard: {},
+  oembed: {}
 };
 
 
@@ -56,7 +57,10 @@ module.exports.parse = function (body, callback) {
               populate.opengraph = og;
               parseTwitterCard($, function(err, twittercard) {
                 populate.twittercard = twittercard;
-                callback(null, populate, body);
+                parseOembed($, function(err, oembed) {
+                  populate.oembed = oembed;
+                  callback(null, populate, body);
+                });                
               });
             });
           })

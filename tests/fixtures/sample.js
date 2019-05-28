@@ -12,8 +12,9 @@ const html = `
     <meta property="og:title" content="A Twitter for My Sister" />
     <meta property="og:description" content="In the early days, Twitter grew so quickly that it was almost impossible to add new features because engineers spent their time trying to keep the rocket ship from stalling." />
     <meta property="og:image" content="http://graphics8.nytimes.com/images/2011/12/08/technology/bits-newtwitter/bits-newtwitter-tmagArticle.jpg" />
-
-<title>My cool website</title>
+    <link rel="alternate" type="text/xml+oembed" href="https://namchey.com/api/oembed?url=https%3A%2F%2Fnamchey.com%2Fitineraries%2Ftilicho&amp;format=xml">
+    <link rel="alternate" type="text/json+oembed" href="https://namchey.com/api/oembed?url=https%3A%2F%2Fnamchey.com%2Fitineraries%2Ftilicho&amp;format=json">
+    <title>My cool website</title>
 
 </head>
 
