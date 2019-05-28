@@ -104,6 +104,28 @@ suq(url, function (err, json, body) {
 
 ```
 
+
+### Oembed
+
+How to scrape a website and store its oembed links.
+https://oembed.com/
+
+
+```javascript
+var suq = require('suq');
+var url = "http://www.example.com";
+
+suq(url, function (err, json, body) {
+
+    if (!err) {
+        var oembedLinks = json.oembed;
+        console.log(JSON.stringify(oembedLinks, null, 2));
+    }
+
+});
+
+```
+
 ### Microformat
 
 How to scrape a website and store its microformats version 1 and 2 data.
