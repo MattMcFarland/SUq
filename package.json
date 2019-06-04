@@ -1,7 +1,7 @@
 {
   "name": "suq",
   "main": "./index",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A Scraping Utility for lazy people",
   "scripts": {
     "test": "tape tests/*.js | tap-diff"
