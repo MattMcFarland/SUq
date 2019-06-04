@@ -55,7 +55,7 @@
     "cheerio": "^0.22.0",
     "lodash": "^4.17.11",
     "microdata-node": "^1.0.0",
-    "microformat-node": "^0.3.1",
+    "microformat-node": "^2.0.1",
     "minimist": "^1.2.0",
     "request": "^2.88.0",
     "traverse": "^0.6.6",
